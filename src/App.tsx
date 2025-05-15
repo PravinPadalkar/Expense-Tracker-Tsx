@@ -21,7 +21,7 @@ function App() {
       <main>
         <Header />
         <MyForm expenseList={expenseList} setExpenseList={setExpenseList} />
-        <MyTable expenseList={expenseList} />
+        <MyTable setExpenseList={setExpenseList} expenseList={expenseList} />
       </main>
     </div>
   );

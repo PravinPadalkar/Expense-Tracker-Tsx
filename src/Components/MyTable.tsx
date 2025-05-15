@@ -1,9 +1,15 @@
+import React from "react";
 import type { ExpenseType } from "../helper/types";
 
 type MyTableProps = {
   expenseList: ExpenseType[];
+  setExpenseList: React.Dispatch<React.SetStateAction<ExpenseType[]>>;
 };
-const MyTable = ({ expenseList }: MyTableProps) => {
+const MyTable = ({ expenseList, setExpenseList }: MyTableProps) => {
+  const handleDelete = (id: string) => {
+    console.log(id);
+    setExpenseList((prev) => prev.filter((item) => item.id !== id));
+  };
   return (
     <section className="table-section">
       <div className="table-header">
@@ -61,7 +67,7 @@ const MyTable = ({ expenseList }: MyTableProps) => {
               <td>
                 <div className="icons">
                   <i className="fas fa-edit edit-icon"></i>
-                  <i className="fa fa-trash delete-icon " aria-hidden="true"></i>
+                  <i className="fa fa-trash delete-icon " aria-hidden="true" onClick={() => handleDelete(id)}></i>
                 </div>
               </td>
             </tr>

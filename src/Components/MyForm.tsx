@@ -17,11 +17,13 @@ export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const newData = { ...data, id: (expenseList.length + 1).toString() };
     setExpenseList((prev) => [...prev, newData]);
+    reset();
   };
   console.log(expenseList);
   return (
@@ -67,7 +69,11 @@ export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
         </div>
         <div className="input-group">
           <label htmlFor="amount">Amount:</label>
-          <input type="number" {...register("amount", { required: "Please Enter a amount" })} id="amount" />
+          <input
+            type="number"
+            {...register("amount", { required: "Please Enter a amount", valueAsNumber: true })}
+            id="amount"
+          />
           {errors.amount && <span className="error">{errors.amount?.message}</span>}
         </div>
         <div className="input-group button-group">

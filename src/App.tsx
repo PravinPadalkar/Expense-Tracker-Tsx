@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import MyForm from "./Components/MyForm";
 import MyTable from "./Components/MyTable";
-import type { ExpenseType } from "./helper/types";
+import { Category, type ExpenseType } from "./helper/types";
 
 function App() {
   const [expenseList, setExpenseList] = useState<ExpenseType[]>([
@@ -12,7 +12,7 @@ function App() {
       amount: 45,
       title: "Heelo",
       description: "gdgdf",
-      category: "Additional Expenses",
+      category: Category.AdditionalExpenses,
       date: "14-05-2025",
     },
   ]);

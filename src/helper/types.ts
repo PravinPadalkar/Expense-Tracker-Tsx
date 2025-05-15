@@ -10,4 +10,4 @@ export interface ExpenseType {
 //   All = "all",
 //   Rent = "rent",
 // }
-type Category = "Rent" | "Shopping" | "Food" | "Transport" | "College Fees" | "Additional Expenses";
+export type Category = "Rent" | "Shopping" | "Food" | "Transport" | "College Fees" | "Additional Expenses";

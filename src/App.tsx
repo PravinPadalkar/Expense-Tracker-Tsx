@@ -13,7 +13,7 @@ function App() {
       title: "Heelo",
       description: "gdgdf",
       category: "Additional Expenses",
-      date: "140",
+      date: "14-05-2025",
     },
   ]);
   return (

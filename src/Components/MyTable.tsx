@@ -55,9 +55,9 @@ const MyTable = ({ expenseList }: MyTableProps) => {
               <td>{id}</td>
               <td>{title}</td>
               <td>{description}</td>
+              <td>{date}</td>
               <td>{category}</td>
               <td>{amount}</td>
-              <td>{date}</td>
               <td>
                 <div className="icons">
                   <i className="fas fa-edit edit-icon"></i>

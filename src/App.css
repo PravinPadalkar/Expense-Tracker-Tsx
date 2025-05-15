@@ -1,192 +1,197 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    outline: none;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
-body{
-   
-    font-family: "Roboto", sans-serif;
-    margin-inline: 8px;
+body {
+  font-family: "Roboto", sans-serif;
+  margin-inline: 8px;
 }
-.container{
-    max-width: 1200px;
-    margin-inline: auto;
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
 }
-main{
-    padding: 16px;
+main {
+  padding: 16px;
 }
-h1{
-    margin-bottom: 2rem;
+h1 {
+  margin-bottom: 2rem;
 }
-header{
-    background-color: aquamarine;
-    padding: 12px 16px;
-    display: flex;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-    margin-bottom: 4rem;
-    border-radius: 4px;
+header {
+  background-color: aquamarine;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  margin-bottom: 4rem;
+  border-radius: 4px;
 }
-header .logo{
-    display: flex;
-    align-items: center;
-    font-size: 2em;
-    gap: 8px;
-    font-weight: 600;
+header .logo {
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+  gap: 8px;
+  font-weight: 600;
 }
-.logo img{
-    width: 50px;
+.logo img {
+  width: 50px;
 }
 /* form section */
-.form-section{  
-    margin-block: 1rem 3rem;
-    padding: 64px 32px;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-    border-radius: 4px;
+.form-section {
+  margin-block: 1rem 3rem;
+  padding: 64px 32px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  border-radius: 4px;
 }
 
-.myForm{
-    display: grid;
-    grid-template-columns:  repeat(auto-fit ,minmax(300px,1fr));
-    grid-template-rows: repeat(auto-fit,44px);
-    gap: 16px;
-    
-   
+.myForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 32px;
+  column-gap: 16px;
 }
 .two {
-    grid-column:  span 2 dense;
+  grid-column: span 2 dense;
 }
-.input-group{
-    display: flex;
-    gap: 4px;
-    align-items:center ;
-    justify-content: flex-end;
+.input-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 44px;
 }
 
-.input-group label{
-    font-size: 1.1em;
-    width: 98px;
+.input-group label {
+  font-size: 1.1em;
+  width: 98px;
 }
-.input-group input{
-    flex: 1;
-    height: 32px;
-    border-radius: 4px;
-    border: 0.5px solid rgb(147, 214, 147);
-    font-size: 0.9em;
-    padding: 0px 4px;
+.input-group input {
+  flex: 1;
+  height: 32px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(147, 214, 147);
+  font-size: 0.9em;
+  padding: 0px 4px;
 }
-.input-group select{
-    flex: 1;
-    height: 32px;
-    font-size: 0.9em;
-    padding: 0px 4px;
-    border-radius: 4px;
-    border: 0.5px solid rgb(147, 214, 147);
+.input-group select {
+  flex: 1;
+  height: 32px;
+  font-size: 0.9em;
+  padding: 0px 4px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(147, 214, 147);
 }
-.input-group button{
-    cursor: pointer;  
-    width: 86px;
-    height: 32px;
-    color: white;
-    background-color: rgb(199, 84, 84);
-    border: 0.1px solid rgb(17, 198, 108);
-    border-radius: 4px;
+.input-group button {
+  cursor: pointer;
+  width: 86px;
+  height: 32px;
+  color: white;
+  background-color: rgb(199, 84, 84);
+  border: 0.1px solid rgb(17, 198, 108);
+  border-radius: 4px;
 }
 /* Table Css */
-.table-section{
-    overflow: hidden;
-    overflow-x: auto;
-    padding: 32px 32px;
-    box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+.table-section {
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 32px 32px;
+  box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+    rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px,
+    rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
 }
-.filter-section{
-    display: flex;
-    gap :8px;
-    flex-wrap:wrap ;
+.filter-section {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-.filter-section input{
-    width: 150px;
-    height: 24px;
-    border-radius: 4px;
-    border: 0.5px solid rgb(182, 161, 161);
-    padding: 2px 4px;
+.filter-section input {
+  width: 150px;
+  height: 24px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(182, 161, 161);
+  padding: 2px 4px;
+}
+.date-filter-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.search-container {
+  position: relative;
+}
+.search-container .search-icon {
+  position: absolute;
+  right: 4px;
+  top: 16px;
+  color: rgb(186, 183, 179);
+}
 
+.myTable {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  text-align: center;
+  white-space: nowrap;
 }
-.date-filter-container{
-    display: flex;
-    gap: 4px;
-    align-items: center;
+.myTable th {
+  background-color: #9ff1f2;
 }
-.search-container{
-    position: relative;
+.myTable th,
+td {
+  padding: 8px 8px;
+  border: 1px solid rgb(66, 110, 11);
 }
-.search-container .search-icon{
-    position: absolute;
-    right: 4px;
-    top: 16px;
-    color: rgb(186, 183, 179);
+.myTable .filterByCategory {
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
-
-.myTable{
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-    text-align: center;
-    white-space: nowrap;
-   
+.myTable .icons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: rgb(31, 96, 181);
 }
-.myTable th{
-    background-color: #9ff1f2;
-   
-    
+.icons i {
+  cursor: pointer;
 }
-.myTable th,td{
-    padding: 8px 8px;
-    border: 1px solid rgb(66, 110, 11);
+.sort-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
-.myTable .filterByCategory{
-    width: 100%;
-    padding: 4px 8px;
-    border-radius: 4px;
+.sort-section i {
+  cursor: pointer;
+  color: rgb(41, 119, 3);
+  font-weight: 600;
 }
-.myTable .icons{
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    color: rgb(31, 96, 181);
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-.icons i{
-    cursor: pointer;
-}
-.sort-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-.sort-section i{
-    cursor: pointer;
-    color: rgb(41, 119, 3);
-    font-weight: 600;
-}
-.table-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-@media (max-width:500px){
-    main{
-        padding: 4px;
-    }
-    .form-section{  
-       
-        padding: 64px 8px;
-       
-    }
+@media (max-width: 500px) {
+  main {
+    padding: 4px;
+  }
+  .form-section {
+    padding: 64px 8px;
+  }
 }
 /* Commit before a two way merge */
 /* before second merge */
+
+.error {
+  position: absolute;
+  bottom: -14px;
+  left: 104px;
+  font-size: 14px;
+  color: red;
+}

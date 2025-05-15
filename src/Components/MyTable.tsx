@@ -76,7 +76,9 @@ const MyTable = ({ expenseList, setExpenseList }: MyTableProps) => {
         <tfoot>
           <tr>
             <th colSpan={5}>Total</th>
-            <th colSpan={2} className="total-field"></th>
+            <th colSpan={2} className="total-field">
+              {expenseList.reduce((acc, curr) => acc + curr.amount, 0)}
+            </th>
           </tr>
         </tfoot>
       </table>

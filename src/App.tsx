@@ -13,15 +13,21 @@ function App() {
       title: "Heelo",
       description: "gdgdf",
       category: Category.AdditionalExpenses,
-      date: "14-05-2025",
+      date: "2025-05-16",
     },
   ]);
+  const [editingValues, setEditingValues] = useState<ExpenseType | undefined>();
   return (
     <div className="container">
       <main>
         <Header />
-        <MyForm expenseList={expenseList} setExpenseList={setExpenseList} />
-        <MyTable setExpenseList={setExpenseList} expenseList={expenseList} />
+        <MyForm
+          expenseList={expenseList}
+          setExpenseList={setExpenseList}
+          editingValues={editingValues}
+          setEditingValues={setEditingValues}
+        />
+        <MyTable setExpenseList={setExpenseList} expenseList={expenseList} setEditingValues={setEditingValues} />
       </main>
     </div>
   );

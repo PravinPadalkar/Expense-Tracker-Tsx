@@ -4,11 +4,16 @@ import type { ExpenseType } from "../helper/types";
 type MyTableProps = {
   expenseList: ExpenseType[];
   setExpenseList: React.Dispatch<React.SetStateAction<ExpenseType[]>>;
+  setEditingValues: React.Dispatch<React.SetStateAction<ExpenseType | undefined>>;
 };
-const MyTable = ({ expenseList, setExpenseList }: MyTableProps) => {
+const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps) => {
   const handleDelete = (id: string) => {
     console.log(id);
     setExpenseList((prev) => prev.filter((item) => item.id !== id));
+  };
+  const handleEdit = ({ id, description, title, date, category, amount }: ExpenseType) => {
+    setEditingValues({ id, description, title, date, category, amount });
+    console.log("clicked");
   };
   return (
     <section className="table-section">
@@ -48,7 +53,7 @@ const MyTable = ({ expenseList, setExpenseList }: MyTableProps) => {
                 <option value="Food">Food</option>
                 <option value="Transport">Transport</option>
                 <option value="College Food">College Fees</option>
-                <option value="AdditionalExpenses">Additional Expenses</option>
+                <option value="Additional Expenses">Additional Expenses</option>
               </select>
             </th>
             <th style={{ width: "10%" }}>Amount(₹)</th>
@@ -66,7 +71,10 @@ const MyTable = ({ expenseList, setExpenseList }: MyTableProps) => {
               <td>{amount}</td>
               <td>
                 <div className="icons">
-                  <i className="fas fa-edit edit-icon"></i>
+                  <i
+                    className="fas fa-edit edit-icon"
+                    onClick={() => handleEdit({ id, description, title, date, category, amount })}
+                  ></i>
                   <i className="fa fa-trash delete-icon " aria-hidden="true" onClick={() => handleDelete(id)}></i>
                 </div>
               </td>

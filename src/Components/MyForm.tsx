@@ -1,10 +1,13 @@
 import type React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import type { Category, ExpenseType } from "../helper/types";
+import { useEffect } from "react";
 
 type MyFormProp = {
   expenseList: ExpenseType[];
   setExpenseList: React.Dispatch<React.SetStateAction<ExpenseType[]>>;
+  editingValues: ExpenseType | undefined;
+  setEditingValues: React.Dispatch<React.SetStateAction<ExpenseType | undefined>>;
 };
 type Inputs = {
   title: string;
@@ -13,7 +16,7 @@ type Inputs = {
   date: string;
   amount: number;
 };
-export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
+export default function MyForm({ expenseList, setExpenseList, editingValues, setEditingValues }: MyFormProp) {
   const {
     register,
     handleSubmit,
@@ -21,11 +24,40 @@ export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const newData = { ...data, id: (expenseList.length + 1).toString() };
-    setExpenseList((prev) => [...prev, newData]);
-    reset();
+    if (editingValues) {
+      setExpenseList((prev) => {
+        return prev.map((item) => {
+          if (item.id === editingValues.id) {
+            return { ...data, id: editingValues.id };
+          }
+          return item;
+        });
+      });
+      setEditingValues(undefined);
+    } else {
+      const newData = { ...data, id: (expenseList.length + 1).toString() };
+      setExpenseList((prev) => [...prev, newData]);
+    }
+    reset({
+      title: "",
+      description: "",
+      category: "" as Category,
+      amount: undefined,
+      date: "",
+    });
+    console.log("reset");
   };
-  console.log(expenseList);
+  useEffect(() => {
+    if (editingValues) {
+      reset({
+        title: editingValues.title,
+        description: editingValues.description,
+        category: editingValues.category as Category,
+        amount: editingValues.amount,
+        date: editingValues.date,
+      });
+    }
+  }, [editingValues]);
   return (
     <section className="form-section">
       <h1>Add Expense</h1>
@@ -58,7 +90,7 @@ export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
             <option value="Food">Food</option>
             <option value="Transport">Transport</option>
             <option value="College Fees">College Fees</option>
-            <option value="AdditionalExpenses">Additional Expenses</option>
+            <option value="Additional Expenses">Additional Expenses</option>
           </select>
           {errors.category && <span className="error">{errors.category?.message}</span>}
         </div>
@@ -78,7 +110,7 @@ export default function MyForm({ expenseList, setExpenseList }: MyFormProp) {
         </div>
         <div className="input-group button-group">
           <button type="submit" className="submit-btn">
-            Add
+            {editingValues ? "Edit" : "Add"}
           </button>
         </div>
       </form>

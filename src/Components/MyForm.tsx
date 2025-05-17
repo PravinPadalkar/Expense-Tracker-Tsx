@@ -45,7 +45,6 @@ export default function MyForm({ expenseList, setExpenseList, editingValues, set
       amount: undefined,
       date: "",
     });
-    console.log("reset");
   };
   useEffect(() => {
     if (editingValues) {

@@ -14,12 +14,10 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
   const [categoryQuery, setCategoryQuery] = useState<string>("");
   const [sortCallBack, setSortCallBack] = useState<sortCallBackType>(() => () => 0);
   const handleDelete = (id: string) => {
-    console.log(id);
     setExpenseList((prev) => prev.filter((item) => item.id !== id));
   };
   const handleEdit = ({ id, description, title, date, category, amount }: ExpenseType) => {
     setEditingValues({ id, description, title, date, category, amount });
-    console.log("clicked");
   };
   const filteredList = [...expenseList]
     .sort(sortCallBack)
@@ -66,7 +64,6 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
                     className="fa-solid fa-arrow-up up-sort-icon"
                     onClick={() => {
                       setSortCallBack(() => (a: ExpenseType, b: ExpenseType) => a.date.localeCompare(b.date));
-                      console.log("clicked");
                     }}
                   ></i>
                   <i

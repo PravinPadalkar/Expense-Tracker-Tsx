@@ -10,6 +10,7 @@ function App() {
     const stored = localStorage.getItem("expenseList");
     return stored ? JSON.parse(stored) : [];
   });
+
   useEffect(() => {
     localStorage.setItem("expenseList", JSON.stringify(expenseList));
   }, [expenseList]);

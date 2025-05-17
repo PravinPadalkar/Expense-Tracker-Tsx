@@ -1,21 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import MyForm from "./Components/MyForm";
 import MyTable from "./Components/MyTable";
-import { Category, type ExpenseType } from "./helper/types";
+import { type ExpenseType } from "./helper/types";
 
 function App() {
-  const [expenseList, setExpenseList] = useState<ExpenseType[]>([
-    {
-      id: "1",
-      amount: 45,
-      title: "Heelo",
-      description: "gdgdf",
-      category: Category.AdditionalExpenses,
-      date: "2025-05-16",
-    },
-  ]);
+  const [expenseList, setExpenseList] = useState<ExpenseType[]>(() => {
+    const stored = localStorage.getItem("expenseList");
+    return stored ? JSON.parse(stored) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("expenseList", JSON.stringify(expenseList));
+  }, [expenseList]);
+
   const [editingValues, setEditingValues] = useState<ExpenseType | undefined>();
   return (
     <div className="container">

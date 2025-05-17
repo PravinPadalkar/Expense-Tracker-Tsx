@@ -85,7 +85,7 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
                 className="filterByCategory"
                 onChange={(e) => setCategoryQuery(e.target.value)}
               >
-                <option value="default">All</option>
+                <option value="">All</option>
                 <option value="Rent">Rent</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Food">Food</option>

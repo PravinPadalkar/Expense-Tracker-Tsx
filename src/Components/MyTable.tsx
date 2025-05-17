@@ -6,10 +6,13 @@ type MyTableProps = {
   setExpenseList: React.Dispatch<React.SetStateAction<ExpenseType[]>>;
   setEditingValues: React.Dispatch<React.SetStateAction<ExpenseType | undefined>>;
 };
+type sortCallBackType = (a: ExpenseType, b: ExpenseType) => number;
+
 const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps) => {
-  const [serachQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [dateQuery, setDateQuery] = useState<string>("");
   const [categoryQuery, setCategoryQuery] = useState<string>("");
+  const [sortCallBack, setSortCallBack] = useState<sortCallBackType>(() => () => 0);
   const handleDelete = (id: string) => {
     console.log(id);
     setExpenseList((prev) => prev.filter((item) => item.id !== id));
@@ -18,8 +21,9 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
     setEditingValues({ id, description, title, date, category, amount });
     console.log("clicked");
   };
-  const filteredList = expenseList
-    .filter((item) => item.title.toLocaleLowerCase().includes(serachQuery))
+  const filteredList = [...expenseList]
+    .sort(sortCallBack)
+    .filter((item) => item.title.toLocaleLowerCase().includes(searchQuery))
     .filter((item) => item.date.includes(dateQuery))
     .filter((item) => item.category.includes(categoryQuery));
   return (
@@ -58,8 +62,19 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
               <div className="sort-section">
                 <span>Date (yyyy/mm/dd)</span>
                 <div>
-                  <i className="fa-solid fa-arrow-up up-sort-icon"></i>
-                  <i className="fa-solid fa-arrow-down down-sort-icon"></i>
+                  <i
+                    className="fa-solid fa-arrow-up up-sort-icon"
+                    onClick={() => {
+                      setSortCallBack(() => (a: ExpenseType, b: ExpenseType) => a.date.localeCompare(b.date));
+                      console.log("clicked");
+                    }}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-down down-sort-icon"
+                    onClick={() =>
+                      setSortCallBack(() => (a: ExpenseType, b: ExpenseType) => b.date.localeCompare(a.date))
+                    }
+                  ></i>
                 </div>
               </div>
             </th>
@@ -108,7 +123,7 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
           <tr>
             <th colSpan={5}>Total</th>
             <th colSpan={2} className="total-field">
-              {expenseList.reduce((acc, curr) => acc + curr.amount, 0)}
+              {filteredList.reduce((acc, curr) => acc + curr.amount, 0)}
             </th>
           </tr>
         </tfoot>
@@ -116,5 +131,4 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
     </section>
   );
 };
-
 export default MyTable;

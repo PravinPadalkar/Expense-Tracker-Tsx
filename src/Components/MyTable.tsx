@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { ExpenseType } from "../helper/types";
 
 type MyTableProps = {
@@ -7,6 +7,9 @@ type MyTableProps = {
   setEditingValues: React.Dispatch<React.SetStateAction<ExpenseType | undefined>>;
 };
 const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps) => {
+  const [serachQuery, setSearchQuery] = useState<string>("");
+  const [dateQuery, setDateQuery] = useState<string>("");
+  const [categoryQuery, setCategoryQuery] = useState<string>("");
   const handleDelete = (id: string) => {
     console.log(id);
     setExpenseList((prev) => prev.filter((item) => item.id !== id));
@@ -15,6 +18,10 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
     setEditingValues({ id, description, title, date, category, amount });
     console.log("clicked");
   };
+  const filteredList = expenseList
+    .filter((item) => item.title.toLocaleLowerCase().includes(serachQuery))
+    .filter((item) => item.date.includes(dateQuery))
+    .filter((item) => item.category.includes(categoryQuery));
   return (
     <section className="table-section">
       <div className="table-header">
@@ -22,10 +29,21 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
         <div className="filter-section">
           <div className="date-filter-container">
             <span>Search By Date:</span>
-            <input type="date" name="filterDate" className="filterDate" />
+            <input
+              type="date"
+              name="filterDate"
+              className="filterDate"
+              onChange={(e) => setDateQuery(e.target.value)}
+            />
           </div>
           <div className="search-container">
-            <input type="text" name="filterDate" placeholder="search by title" className="searchTitle" />
+            <input
+              type="text"
+              name="filterDate"
+              placeholder="search by title"
+              className="searchTitle"
+              onChange={(e) => setSearchQuery(e.target.value.toLocaleLowerCase())}
+            />
             <i className="fas fa-search fa-xl search-icon"></i>
           </div>
         </div>
@@ -46,7 +64,12 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
               </div>
             </th>
             <th style={{ width: "20%" }}>
-              <select name="filter" id="filter" className="filterByCategory">
+              <select
+                name="filter"
+                id="filter"
+                className="filterByCategory"
+                onChange={(e) => setCategoryQuery(e.target.value)}
+              >
                 <option value="default">All</option>
                 <option value="Rent">Rent</option>
                 <option value="Shopping">Shopping</option>
@@ -61,7 +84,7 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
           </tr>
         </thead>
         <tbody>
-          {expenseList.map(({ id, title, description, category, amount, date }) => (
+          {filteredList.map(({ id, title, description, category, amount, date }) => (
             <tr key={id}>
               <td>{id}</td>
               <td>{title}</td>

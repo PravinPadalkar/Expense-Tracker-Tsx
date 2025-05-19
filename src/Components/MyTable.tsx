@@ -96,34 +96,42 @@ const MyTable = ({ expenseList, setExpenseList, setEditingValues }: MyTableProps
           </tr>
         </thead>
         <tbody>
-          {filteredList.map(({ id, title, description, category, amount, date }) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{title}</td>
-              <td>{description}</td>
-              <td>{date}</td>
-              <td>{category}</td>
-              <td>{amount}</td>
-              <td>
-                <div className="icons">
-                  <i
-                    className="fas fa-edit edit-icon"
-                    onClick={() => handleEdit({ id, description, title, date, category, amount })}
-                  ></i>
-                  <i className="fa fa-trash delete-icon " aria-hidden="true" onClick={() => handleDelete(id)}></i>
-                </div>
-              </td>
+          {filteredList.length === 0 ? (
+            <tr style={{ textAlign: "center" }}>
+              <td colSpan={7}>No Data To Show</td>
             </tr>
-          ))}
+          ) : (
+            filteredList.map(({ id, title, description, category, amount, date }) => (
+              <tr key={id}>
+                <td>{id}</td>
+                <td>{title}</td>
+                <td>{description}</td>
+                <td>{date}</td>
+                <td>{category}</td>
+                <td>{amount}</td>
+                <td>
+                  <div className="icons">
+                    <i
+                      className="fas fa-edit edit-icon"
+                      onClick={() => handleEdit({ id, description, title, date, category, amount })}
+                    ></i>
+                    <i className="fa fa-trash delete-icon " aria-hidden="true" onClick={() => handleDelete(id)}></i>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
-        <tfoot>
-          <tr>
-            <th colSpan={5}>Total</th>
-            <th colSpan={2} className="total-field">
-              {filteredList.reduce((acc, curr) => acc + curr.amount, 0)}
-            </th>
-          </tr>
-        </tfoot>
+        {filteredList.length !== 0 && (
+          <tfoot>
+            <tr>
+              <th colSpan={5}>Total</th>
+              <th colSpan={2} className="total-field">
+                {filteredList.reduce((acc, curr) => acc + curr.amount, 0)}₹
+              </th>
+            </tr>
+          </tfoot>
+        )}
       </table>
     </section>
   );
